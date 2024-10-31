@@ -1,0 +1,24 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: base
+  datasource:
+    url: jdbc:postgresql://localhost:5430/sbom
+    username: sbom
+    password: sbom
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 30000
+      idle-timeout: 600000
+      max-lifetime: 1800000
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    open-in-view: true
+
+jwt:
+  SECRET_KEY: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970
+  EXPIRATION_TIME: 3600000
+  EXPIRATION_TIME_REMEMBER_ME: 3600000
