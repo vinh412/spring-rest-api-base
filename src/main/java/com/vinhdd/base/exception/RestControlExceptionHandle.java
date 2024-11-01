@@ -3,6 +3,7 @@ package com.vinhdd.base.exception;
 import com.vinhdd.base.dto.out.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -37,6 +38,17 @@ public class RestControlExceptionHandle {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(
                 ApiResponse.builder()
                         .message(e.getMessage())
+                        .success(false)
+                        .build()
+        );
+    }
+
+    @ExceptionHandler({AccessDeniedException.class})
+    @ResponseBody
+    public ResponseEntity<ApiResponse<?>> resolveAccessDeniedException(AccessDeniedException e) {
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
+                ApiResponse.builder()
+                        .message("Access denied")
                         .success(false)
                         .build()
         );

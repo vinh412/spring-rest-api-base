@@ -5,10 +5,8 @@ import com.vinhdd.base.dto.out.ApiResponse;
 import com.vinhdd.base.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -36,10 +34,5 @@ public class AuthController {
                         .message("register success")
                         .build()
         );
-    }
-
-    @GetMapping("/test")
-    public ResponseEntity<?> test() {
-        throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "thích thì ném");
     }
 }
