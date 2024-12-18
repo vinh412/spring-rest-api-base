@@ -76,16 +76,12 @@ public class JwtService {
                 .parseClaimsJws(token)
                 .getBody();
         } catch (SignatureException | MalformedJwtException ex) {
-            log.error("Invalid JWT token");
             throw new CommonException("Invalid JWT token", HttpStatus.UNAUTHORIZED);
         } catch (ExpiredJwtException ex) {
-            log.error("Expired JWT token");
             throw new CommonException("Expired JWT token", HttpStatus.UNAUTHORIZED);
         } catch (UnsupportedJwtException ex) {
-            log.error("Unsupported JWT token");
             throw new CommonException("Unsupported JWT token", HttpStatus.UNAUTHORIZED);
         } catch (IllegalArgumentException ex) {
-            log.error("JWT claims string is empty.");
             throw new CommonException("JWT claims string is empty", HttpStatus.UNAUTHORIZED);
         }
     }
